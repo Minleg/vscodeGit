@@ -13,3 +13,6 @@ li{
 #nextweek{
     font-style: italic;
 }
+li{
+    list-style: square;
+}
