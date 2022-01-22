@@ -1,0 +1,23 @@
+p{
+    color: blue;
+}
+h1{
+    color: white;
+}
+body{
+    background-color: orange;
+}
+table, tr, td, th{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th{
+    background: gray;
+    width: 200px;
+}
+tr:nth-child(even){
+    background: aquamarine;
+}
+tr:nth-child(odd){
+    background: darkcyan;
+}

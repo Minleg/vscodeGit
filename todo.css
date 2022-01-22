@@ -1,0 +1,15 @@
+li{
+    color: darkblue;
+}
+
+.important{
+    color: red;
+}
+
+/* more specific class property is applied. color is red instead of darkblue for li elements with class important*/
+#thisweek{
+    font-weight: bold;
+}
+#nextweek{
+    font-style: italic;
+}
