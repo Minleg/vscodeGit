@@ -1,0 +1,11 @@
+#real-alert{
+    display: inline;
+    background-color: cadetblue;
+    color: coral;
+}
+#test-only{
+    display: inline;
+    background-color: cornflowerblue;
+    color: yellow;
+    float: right;
+}
