@@ -11,6 +11,11 @@ table, tr, td, th{
     border: 1px solid black;
     border-collapse: collapse;
 }
+img{
+    border-radius: 30px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
 th{
     background: gray;
     width: 200px;
