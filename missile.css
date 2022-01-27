@@ -9,3 +9,11 @@
     color: yellow;
     float: right;
 }
+table,th,td{
+    border: 1px solid white;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+th,td{
+    background-color: aquamarine;
+}
