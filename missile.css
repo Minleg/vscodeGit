@@ -1,19 +1,20 @@
 #real-alert{
-    display: inline;
-    background-color: cadetblue;
+    background-color: #b33537;
     color: coral;
+    font-size: 30px;
+    border: 10px red dotted;
+    display: block;
 }
 #test-only{
-    display: inline;
-    background-color: cornflowerblue;
-    color: yellow;
-    float: right;
+    background-color: rgb(14, 204, 77);
+    color: black;
+    font-size: 30px;
+    border: 5px green dashed;
+    display: block;
+   
 }
-table,th,td{
-    border: 1px solid white;
-    border-collapse: collapse;
-    border-radius: 10px;
-}
-th,td{
-    background-color: aquamarine;
+.alert{
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
 }
