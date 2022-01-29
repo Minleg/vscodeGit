@@ -18,3 +18,9 @@
     margin: 10px;
     padding: 10px;
 }
+#missle-image{
+    border-radius: 10px;
+    width: 50px;
+    height: 35px;
+    float: right;
+}
