@@ -38,6 +38,10 @@
                     alert('Enter some text')
                     return
                 }
+                if(newText.length >=50){ // alert user if the text input in greater than or equal to 50 in length
+                    alert('Text entered is too long.')
+                    return
+                }
 
                 if(elementsInList >= maxElements){ // check the max number is not added.
                     alert('no more elements can be added')
