@@ -94,12 +94,7 @@
         listItem.innerHTML = `${studentName}, id: ${studentID}, GPA:${studentGPA}`
 
         listItem.addEventListener('click', function(){
-            this.classList.toggle('selected') // adds the class selected when clicked the first time.
-            
-           // listItem.addEventListener('click', function(){
-            //this.classList.remove('selected')// removes the class selected when clicked again.
-           // })
-        
+            this.classList.toggle('selected') // toggles between adding the selected class and removing it.
         })
         
         studentLists.appendChild(listItem) //add new li element to the ul #student-list element
@@ -108,7 +103,7 @@
         studentIDInput.value = ''
         studentGPAInput.value = ''
 
-        numStudent++
+        numStudent++ // increase the number of student value
         numberOfStudents.innerHTML = numStudent //update the num student
     }
 
@@ -117,8 +112,10 @@
     removeStudentButton.addEventListener('click', function(){
             let listElementsToDelete = document.querySelectorAll('.selected')
             listElementsToDelete.forEach(function(list){
-                list.remove()
+                list.remove() // removes the list element
             })
+            numStudent = numStudent - 1 // reduce the number of students when one gets removed.
+            numberOfStudents.innerHTML = numStudent
 
     })
 
