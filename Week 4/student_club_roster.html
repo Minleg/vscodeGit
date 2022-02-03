@@ -111,11 +111,12 @@
 
     removeStudentButton.addEventListener('click', function(){
             let listElementsToDelete = document.querySelectorAll('.selected')
+            let numSelected = document.getElementsByClassName('selected').length // stores the total number of li elements with class selected 
             listElementsToDelete.forEach(function(list){
                 list.remove() // removes the list element
             })
-            numStudent = numStudent - 1 // reduce the number of students when one gets removed.
-            numberOfStudents.innerHTML = numStudent
+            numStudent = numStudent - numSelected // reduce the number of students when number of selected list gets removed.
+            numberOfStudents.innerHTML = numStudent // updates the number of students in the list.
 
     })
 
