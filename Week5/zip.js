@@ -8,3 +8,8 @@ function isMinnesotaZip(code){
 }
 
 console.log(isMinnesotaZip(55403))
+console.log(isMinnesotaZip('55403')) // this should work as well, javaScript does type coersion
+console.log(isMinnesotaZip(55001))
+console.log(isMinnesotaZip(56763))
+console.log(isMinnesotaZip(55000))
+console.log(isMinnesotaZip(56764))

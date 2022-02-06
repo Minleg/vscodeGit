@@ -18,3 +18,9 @@ console.log("Today's temperature is " + todayTemp + "F")
 
 let TempC = (todayTemp - 32) * 5 / 9
 console.log('Today\'s temperature is ' + TempC.toFixed(2) + 'C')
+console.log(`Today's temperature is ${TempC.toFixed(2)}C which is equivallent to ${todayTemp}F`)  // Template string gets easier to use with more strings
+
+let className = 'Web Programming'
+let classCode = 2560
+let department = 'ITEC'
+console.log(`This class is ${department} ${classCode} ${className}`)

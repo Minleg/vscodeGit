@@ -11,6 +11,7 @@ console.log(message)
 function f_to_c(f, decimalPlaces){
     let celsius = (f - 32) * 5 / 9
     if(decimalPlaces){ // undefined values are considered to be false
+        // undefined is a falsy value
         return celsius.toFixed(decimalPlaces)
     }else{
         return celsius
