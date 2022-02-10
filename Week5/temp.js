@@ -53,18 +53,43 @@ let weather = {
 
 // Extract current temperature, step-by-step
 let weatherList = weather.list
-console.log(weatherList)
+//console.log(weatherList)
 
 let weatherInfo = weatherList[0]
-console.log(weatherInfo)
+//console.log(weatherInfo)
 
 let main = weatherInfo.main
-console.log(main)
+//console.log(main)
 
 let currentTemp = main.temp
-console.log(currentTemp)    // and there's the temp!
+//console.log(currentTemp)    // and there's the temp!
 
 // Or, combine all these steps into one 
 // test this type of code and make sure you don't miss a step.
 let temp = weather.list[0].main.temp
-console.log(temp)
+console.log('The current temperature is ' + temp)
+
+// step by step to get wind speed
+let wind = weatherInfo.wind
+//console.log(wind)
+let windSpeed = wind.speed 
+console.log('The current windspeed is ' + windSpeed)
+
+let weatherDescriptionArray = weatherInfo.weather
+//console.log(weatherDescriptionArray)
+let descriptionArray = [] // empty array to store the descriptions
+
+weatherDescriptionArray.forEach(function(weatherDescription){ 
+    descriptionArray.push(weatherDescription.description) // adding each description from both the objects to the array defined above
+
+})
+
+let descriptionString = descriptionArray.join(', ')
+console.log('The weather is ' + descriptionString)
+
+let longitude = weatherInfo.coord.lon
+let latitude = weather.list[0].coord.lat
+console.log('Longitude :  ' + longitude)
+console.log('Latitude : ' + latitude)
+
+

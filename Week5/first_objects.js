@@ -22,3 +22,7 @@ console.log(user)
 user.email = 'minleg@minneapolis.edu'
 console.log(user)
 console.log(user['email'])
+
+for ( let name in user){ // loops through each object
+    console.log(name, user[name])
+}

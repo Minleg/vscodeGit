@@ -23,7 +23,7 @@
 
     <h2>Order Information</h2>
 
-    <label for="homeowner-name">Homeowner Name</label><input id="homeowner-name" name="homeowner-name">
+    <label for="homeowner-name">Homeowner Name</label><input id="homeowner-name" name="homeowner-name" >
     <br>
     <label for="homeowner-house-number">House Number</label><input id="homeowner-house-number" name="homeowner-house-number">
     <br>
@@ -104,11 +104,14 @@
             errors.push('Enter city name')
         }
         if (!zipcode) {
-            errors.push('Enter zip code')
+             errors.push('Enter zip code')
         }
         if (zipcode <= 55000 || zipcode >=56764) {
             errors.push('Enter a valid zipcode')
         }
+        if(typeof zipcode ==='string' || zipcode instanceof String){ // checks if user input for zipcode is a string value or not
+            errors.push('Zip code can not be a string value.')
+        } 
         if (!treeType) {
             errors.push ('Choose your type of tree')
         }
