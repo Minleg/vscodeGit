@@ -109,7 +109,7 @@
         if (zipcode <= 55000 || zipcode >=56764) {
             errors.push('Enter a valid zipcode')
         }
-        if(typeof zipcode ==='string' || zipcode instanceof String){ // checks if user input for zipcode is a string value or not
+        if(zipcode instanceof String){ // checks if user input for zipcode is a string value or not
             errors.push('Zip code can not be a string value.')
         } 
         if (!treeType) {
@@ -121,12 +121,12 @@
             return
         }else {
             
-            orderSummaryParagraph.innerHTML = `Name : ${name}   
-            HouseNumber : ${houseNumber}  
-            StreetName : ${streetName}   
-            City : ${city}   
-            State : Minnesota   
-            ZipCode : ${zipcode}  
+            orderSummaryParagraph.innerHTML = `Name : ${name} <br/>
+            HouseNumber : ${houseNumber}  <br/>
+            StreetName : ${streetName}   <br/>
+            City : ${city}   <br/>
+            State : Minnesota  <br/> 
+            ZipCode : ${zipcode} <br/> 
             TreeType : ${treeType}`  
            
 

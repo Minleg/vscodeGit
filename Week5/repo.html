@@ -14,11 +14,11 @@
             <button id="analyze">Analyze</button>
 
             <div id="status-message"></div>
-
+            <h2>Repository Language Statistics</h2>
             <div id="repository-statistics">
                 <!-- todo - your script will display the number of repositories with each programming language  -->
             </div>
-
+            <h2>Repository List</h2>
             <div id="repository-list">
                 <!-- todo - your script will display a list of repositories here -->
             </div>
@@ -58,9 +58,57 @@
                     })
             })
 
+            
             function displayRepositoriesOnPage(githubJson) {
 
-                console.log(githubJson)   // just to show you that the JSON is available here
+                //console.log(githubJson)   // just to show you that the JSON is available here
+                let languageList = {}
+                let repoCollection = {}
+                for(repo in githubJson){
+                    let language = githubJson[repo]['language'];
+                    let repoElement = githubJson[repo]['name']
+                    if(repoElement in repoCollection == false){
+                        repoCollection[githubJson[repo]['name']] = githubJson[repo]['html_url']
+                    }
+                    if (language in languageList == false){
+                        languageList[githubJson[repo]['language']] = 1
+                    }else{
+                        languageList[githubJson[repo]['language']] += 1
+                    }
+                }
+                //console.log(languageList)
+                let unorderedList = document.createElement('ul')
+                unorderedList.setAttribute('id','unlist')
+                //console.log(unorderedList.id)
+                let divElement = document.getElementById('repository-statistics')
+                divElement.appendChild(unorderedList)
+
+                let repoDiv = document.createElement('div')
+                let mainDiv = document.getElementById('repository-list')
+                mainDiv.appendChild(repoDiv)
+
+                for(repo in repoCollection){
+                    let repoPara = document.createElement('p')
+                    let repoLink = document.createElement('a')
+                    repoPara.innerHTML = repo
+                    repoLink.href = repoCollection[repo]
+                    repoLink.innerHTML = 'View at GitHub'
+                    
+                    repoDiv.appendChild(repoPara)
+                    repoDiv.appendChild(repoLink)
+                }
+                
+                for(language in languageList){
+                    
+                    let list = document.createElement('li')
+                    list.innerHTML= language + ': ' + languageList[language] 
+                    list.setAttribute('class','listClass')
+                    unorderedList.appendChild(list)
+                }
+                usernameInput.value = ''
+                //divElement.removeChild(unorderedList)
+                
+                
                     
                 // TODO use the JSON to display a list of the user's repositories
                 // TODO can you create a link to that repository at GitHub?
@@ -75,6 +123,25 @@
                 // TODO create elements on page to display the languages used and each languages' frequency
                 
             }
+        
+
+            
+            
+        
+
+            //repoList.value = ''
+            //repoStats.value = ''
+            //let divElement =  document.getElementById('repository-statistics')
+            //let unorderedList = document.getElementById('unlist')
+            //let listElement = document.getElementsByClassName('listClass')
+            //unorderedList.removeChild(listElement)
+            //divElement.removeChild(unorderedList)
+            //divElement.removeChild(unorderedList)
+            //divElement.removeChild(deleteChild)
+            
+            //console.log(repoList.childNodes)
+            //console.log(repoStats.childNodes)
+            
 
 
         </script>
