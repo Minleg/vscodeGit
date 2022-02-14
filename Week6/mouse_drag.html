@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Drawing</title>
+</head>
+<body>
+
+    <label for="color">Color</label><input id="color" type="color"><br>
+    <label for="size">Size</label><input id="size" type="range"><br>
+    <button id="clear">Clear Canvas</button><br>
+
+    <canvas id="canvas"height="800" width="800"></canvas>
+
+    <script>
+        let canvas = document.querySelector('#canvas')
+        let context = canvas.getContext('2d')
+
+        let colorInput = document.querySelector('#color')
+        let sizeInput = document.querySelector('#size')
+        let clearButton = document.querySelector('#clear')
+
+        canvas.addEventListener('click',function(){//when the user clicks in an area on canvas, this event is evoked
+            //sets the x, y coordinates of where the click happens
+            let x = event.offsetX
+            let y = event.offsetY
+
+            let radius = sizeInput.value // radius is the size selected in the size range input value
+            let color = colorInput.value // color is the color selected on the color options
+
+            context.beginPath() 
+            context.arc(x,y,radius,0,2*Math.PI) //full circle
+            context.fillStyle = color // sets the color to the color choosen by the user
+            context.fill() // fills the circle with the color
+        })
+
+        clearButton.addEventListener('click', function(){ // event invoked when clear button is clicked
+            context.fillStyle = 'white' // sets the canvas style to white, like the background of your browser tab
+            context.fillRect(0,0,800,800) // fills the canvas with white, which is a trick way to clear, otherwise there isn't a way to clear the canvas.
+            
+        })
+
+
+    </script>
+    
+</body>
+</html>

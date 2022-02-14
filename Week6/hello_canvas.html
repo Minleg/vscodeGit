@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style>
+            canvas {
+                border: 1px black solid;
+        
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" height="500" width="500">
+        </canvas>
+
+        <script>
+            let canvas = document.querySelector('#canvas') 
+            let context = canvas.getContext('2d') // create a drawing context element
+
+            //context.fillRect(20,20,100,100) // rectangle top left coordinates 20,20 and height and width 100. default color fill is black
+            context.fillRect(120,50,50,200) //  first two values are start coordinates, third is the width and fourth is the height 
+
+            context.strokeRect(200,330,100,150)
+
+            context.fillStyle = 'red' // fill color set to red
+            context.fillRect(400,50,100,100)
+            context.strokeStyle = 'green' // stroke color set to green. // stroke method applies color to only border
+            context.lineWidth = 10 // width of the border
+            context.strokeRect(350,350,50,50)
+
+            context.fillStyle = 'yellow'
+            context.fillRect(220,50,150,150)
+            context.strokeStyle = 'blue'
+            context.lineWidth = 5
+            context.strokeRect(220,50,150,150)
+
+            // to draw a line
+            context.beginPath()
+            context.moveTo(10,10) // sets the initial point where the line starts from
+            context.lineTo(100,450) // sets the end point
+            context.lineTo(100,120) // sets the end point, it keeps drawing the line from the point you stop at 
+            context.lineTo(10,10) // all these  three lines complete a triangle
+
+            context.lineWidth = 3
+            context.strokeStyle = 'purple'
+            context.stroke() // draws the line
+
+            // to draw a circle
+            context.beginPath()
+            context.arc(275,265, 55, 0, 2*Math.PI) // 275,265 are the coordinates for the centre, 55 is the radius, 0 is the start angle, and 2*Math.PI is rougly 6.3
+            // you can adjust the last two angle values to draw half circle, quater circle etc, you can try different values like 2 instead of 0 and 5 eg
+            context.strokeStyle = 'darkblue'
+            context.lineWidth = 6
+            context.stroke() // draws the circle
+
+            context.fillStyle = 'magenta' // fill color 
+            context.font = '40px Courier' // font size and type
+            // to put text
+            context.fillText('Hello World', 30,30)
+
+            context.strokeStyle = 'orange' // font gets applied to both fillText and strokeText but you have to apply the style again
+            context.strokeText('Howdy',350,265)
+
+        </script>
+    </body>
+</html>
