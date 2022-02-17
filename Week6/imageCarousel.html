@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--Flickity CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+    <style>
+        body{
+            background: lightblue;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="main-carousel">
+        <div class="carousel-cell"><img src="img/fort.jpg" height="300" width="300"></div>
+        <div class="carousel-cell"><img src="img/goldenTemple.jpg" height="300" width="300"></div>
+        <div class="carousel-cell"><img src="img/lake.jpg" height="300" width="300"></div>
+        <div class="carousel-cell"><img src="img/mountain.jpg" height="300" width="300"></div>
+        <div class="carousel-cell"><img src="img/taj.jpg" height="300" width="300"></div>
+        <div class="carousel-cell"><img src="img/train.jpg" height="300" width="300"></div>
+    </div>
+
+    <script>
+        let flickityElement = document.querySelector('.main-carousel')
+        let flickity = new Flickity(flickityElement,{
+            // Options go here 
+            wrapAroud : true,
+            autoPlay : true // animate
+        })
+    </script>
+    
+</body>
+
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Favorite Foods</title>
+        <link rel="stylesheet" type="text/css" href="tabs.css">
+    </head>
+    <body>
+        <h1>Favorite Foods</h1>
+
+        <div id="tabs">
+            <button data-content-id="pizza" class="tab-button">Pizza</button>
+            <button data-content-id="cheesecake" class="tab-button">Cheesecake</button>
+            <button data-content-id="sushi" class="tab-button">Sushi</button>
+
+        </div>
+
+        <div id="pizza" class="tab-content">Pizza is awesome</div>
+        <div id="cheesecake" class="tab-content">Cheesecake is delicious</div>
+        <div id="sushi" class="tab-content">Sushi is amazing</div>
+
+        <script>
+            let buttons = document.querySelectorAll('.tab-button')
+            let tabContents = document.querySelectorAll('.tab-content')
+
+            tabContents.forEach( function(divEL){ // hide all the tab contents
+                divEL.style.display = 'none'
+            })
+
+            tabContents[0].style.display = 'block' // shows the first tab content
+            buttons[0].classList.add('active') //adds class active to the first button.
+
+            buttons.forEach(function(button){
+                button.addEventListener('click',function(){
+                    //hide all content
+                    tabContents.forEach(function(divEl){
+                        divEl.style.display = 'none'
+                    })
+
+                    buttons.forEach(function(button){ 
+                        button.classList.remove('active') // removes class active from any of the button
+                    })
+
+                    this.classList.add('active') //adds class active to the button that has just been clicked
+
+                    //show the div with content that relates to the button that was clicked.
+                    let contentId = this.getAttribute('data-content-id') // this is the element that generated the event 
+                    let tabContent = document.querySelector('#'+contentId) // example #pizza
+                    tabContent.style.display = 'block'
+                })
+            })
+
+        </script>
+    </body>
+</html>

@@ -5,6 +5,7 @@ let zoomLevel = 9 // 1 = whole world, 20 = city blocks
 let map = L.map('college-map').setView(metroAreaCenterCoordinates, zoomLevel) // L is a variable in leaflet.js which has a method map() which takes an argument for the id of div element to draw the map at.
 // here we don't put the # with the class id
 
+//Add the title layer - roads, streets etc. Without this, nothing to see 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);

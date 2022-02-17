@@ -64,6 +64,7 @@
                 //console.log(githubJson)   // just to show you that the JSON is available here
                 let languageList = {}
                 let repoCollection = {}
+                
                 for(repo in githubJson){
                     let language = githubJson[repo]['language'];
                     let repoElement = githubJson[repo]['name']
@@ -123,6 +124,8 @@
                 // TODO create elements on page to display the languages used and each languages' frequency
                 
             }
+
+
         
 
             
@@ -141,6 +144,16 @@
             
             //console.log(repoList.childNodes)
             //console.log(repoStats.childNodes)
+
+            /*Optional Extra challenge: make a request to the user's API url (e.g.)  https://api.github.com/users/claraj and display an image of that user's avatar image.
+
+Setting the image src in javascript is 
+
+myImageEl.src = 'https://www.image.com/image-name.jpg'
+
+Optional extra extra challenge - what else could you add to this page? What other data do you have in the GitHub response?
+            
+            */
             
 
 

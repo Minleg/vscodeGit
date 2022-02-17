@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab Drawing</title>
+    <style>
+        #canvas{
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,7 +27,7 @@
         let sizeInput = document.querySelector('#size')
         let clearButton = document.querySelector('#clear')
 
-        canvas.addEventListener('click',function(){//when the user clicks in an area on canvas, this event is evoked
+        canvas.addEventListener('click',function drawCircle(){//when the user clicks in an area on canvas, this event is evoked
             //sets the x, y coordinates of where the click happens
             let x = event.offsetX
             let y = event.offsetY
