@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Events</title>
+
+  <style>
+
+    #canvas {
+      border: 1px black solid;
+      margin: 10px;
+    }
+    .arc-select{
+        margin: 10px;
+    }
+    .input {
+        color:darkgreen;
+    }
+    #clear {
+        border-radius: 10px;
+        background-color: aqua;
+        font-size: 25px;
+    }
+
+  </style>
+
+</head>
+<body>
+
+
+<P>Drag the mouse on the canvas</P>
+
+<div class="input">
+
+<label for="color-picker">Choose Color</label>
+<input id="color-picker" type="color">
+<label for="circle-size">Select Size</label>
+<input id="circle-size" type="range"><br>
+<label for="arc-select">Arc size</label>
+<select class="arc-select" required>
+    <option>0.5</option>
+    <option>1</option>
+    <option>1.5</option>
+    <option>2</option>
+</select>
+<label for="fill-stroke">Fill or Stroke</label>
+<select class="fill-stroke" required>
+    <option>Fill</option>
+    <option>Stroke</option>    
+</select>
+<br>
+<button id="clear">clear</button>
+
+
+</div>
+
+<canvas id="canvas" height="400" width="400"></canvas>
+
+
+
+
+<script>
+
+  let canvas = document.querySelector('#canvas')
+  let context = canvas.getContext('2d')
+
+  let colorInput = document.querySelector('#color-picker')
+  let sizeInput =  document.querySelector('#circle-size')
+  let clearButton = document.querySelector('#clear')
+  let arcOption = document.querySelector('.arc-select')
+  let fillStrokeOption = document.querySelector('.fill-stroke')
+  
+  // Keep track of whether the mouse button has been pressed down or not.
+  // Think of this as whether the user is drawing or not, is their brush on the canvas?
+  let mousedown = false 
+
+  canvas.addEventListener('mousedown', function() {
+    mousedown = true
+  })
+
+  canvas.addEventListener('mouseup', function() {
+    mousedown = false 
+  })
+
+  // If mouse leaves the canvas then stop drawing
+  canvas.addEventListener('mouseout', function() {
+    mousedown = false
+  })
+
+  canvas.addEventListener('mousemove', function() {
+
+    // If the mouse button is not pressed down, do not draw.
+    if (!mousedown) { return }
+
+    // event is a built-in variable, contains the event that triggered this function
+    // get the x, y location of the event
+    let x = event.offsetX
+    let y = event.offsetY   //offsetX, offsetY, may not work in older browsers
+
+   let fillColor = colorInput.value
+    context.fillStyle = fillColor
+
+    let size = sizeInput.value // stores the radius option
+    let arcSize = arcOption.value // options to choose quater circle, half circle, 3/4th of circle or full circle.
+    let fillOrStroke = fillStrokeOption.value // option to whether fill the circle or not
+
+    context.beginPath()
+    context.arc(x-5,y-5,size,0,arcSize*Math.PI)
+    if(fillOrStroke == 'Fill'){
+        context.fill() 
+    }else{
+        context.strokeStyle = fillColor // sets the stroke style to the color choosen by the user 
+        context.stroke()
+    }
+    
+    //context.stroke()
+    //Draw a filled rectangle centered under the mouse click
+    //x, y is the top left corner, so shift up and left by 5 to center it under the mouse.
+    //context.fillRect(x-5, y-5, 10, 10)
+
+  })
+
+  clearButton.addEventListener('click', function(){ // clear button when clicked
+      context.fillStyle = 'white' // sets the fill style to white
+      context.fillRect(0,0,400,400) // and fills the canvas with white to give the idea that the drawing has been erased.
+  })
+
+</script>
+
+</body>
+</html>

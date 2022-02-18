@@ -65,6 +65,14 @@
                 let languageList = {}
                 let repoCollection = {}
                 
+                while(repoStats.childElementCount > 0){
+                    repoStats.firstChild.remove()
+                }
+
+                while(repoList.childElementCount > 0){
+                    repoList.firstChild.remove()
+                }
+
                 for(repo in githubJson){
                     let language = githubJson[repo]['language'];
                     let repoElement = githubJson[repo]['name']

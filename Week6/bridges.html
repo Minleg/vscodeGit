@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Leaflet script and CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+    <!--Chart script-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    
+    
+    <!-- Our stylesheet. Make sure the size of the map div is set before trying to draw the map.-->
+    <link rel="stylesheet" type="text/css" href="bridge_style.css">
+    <!-- Our script, uses Leaflet to draw the maps and map components for this page  -->
+    <script async defer src="bridges_map.js"></script>
+
+</head>
+<body>
+
+    <h1>Longest US Bridge Map</h1>
+    <div id="bridge-map"></div>
+    <h1>Bar Chart</h1>
+    <div>
+        <canvas id="canvas"></canvas>
+    </div>
+
+</body>
+</html>
+
