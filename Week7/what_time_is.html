@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Interval</title>
+    </head>
+    <body>
+        <h1>What time is it</h1>
+        <p id="time"></p>
+
+        <script>
+            let timeElement = document.querySelector('#time')
+
+            //setInterval(function (){
+                //let date = Date()
+                //timeElement.innerHTML = date
+
+            //},1000) // it keeps calling the function after every 1000 miliseconds 
+
+            setInterval(() => { //concise version, code works the same like the one before, function word not required but parenthesis is important since there is  multiple line of code inside the callback function
+                // we can list parameter in the () if there is any.
+                let date = Date()  
+                timeElement.innerHTML = date
+            },1000)
+        </script>
+    </body>
+</html>

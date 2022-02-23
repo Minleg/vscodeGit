@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Where is the ISS?</title>
+        <!--leaflet css-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+
+        <!--leaflet js-->
+         <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <script async defer src="fetch.js"></script> <!--async means load the file when the page loads, defer means to wait until everything is ready for execution-->
+    </head>
+    <body>
+
+        <h1>Where is the International Space Station?</h1>
+
+        
+
+        <div>
+            <p id="time"></p>
+            <p>ISS Latitude: <span id="iss-lat"></span></p>
+            <p>ISS Longitude: <span id="iss-long"></span></p>
+        </div>
+
+        <div id="iss-map"></div> <!--div with no content has height 0, hence we have to style it and give it dimension-->
+
+        <p>Icon Iss by Viktor Korobkov from NounProject.com</p>
+
+    </body>
+</html>
