@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/vue@next"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <!--All the page that vue will manage will go here. Template-->
+            <h1>Hello Vue!</h1>
+
+            <p>Original Message: {{ message }}</p>
+
+            <p>Added Exclaimation Message: {{ messageWithExclaimationPoints }}</p>
+
+            <button v-on:click="addExclaimation">Add !</button>
+
+            <button v-on:click="resetMessage">Clear Exclaimation Points</button>
+            
+        </div>
+
+        <script>
+
+            let app = Vue.createApp({
+                data() {
+                    return {
+                        message: 'hello',
+                        maxExclaimationPoints: 10,
+                        exclaimationPoints: 0
+                        
+                    }
+                },
+                methods: {
+                    addExclaimation(){
+                        if (this.exclaimationPoints < this.maxExclaimationPoints){
+                            //this.message = this.message + '!'
+                            this.exclaimationPoints = this.exclaimationPoints + 1 // increments the number of exclaimations added
+                        } else {
+                            alert('No more exclaimation Points!')
+                        }
+                    },
+                    resetMessage(){
+                        //this.message = 'hello'
+                        this.exclaimationPoints = 0
+                        
+                    }
+                },
+                computed: {
+                    messageWithExclaimationPoints() {
+                        let messageWithPoints = this.message
+                        for (let x=0; x < this.exclaimationPoints ; x++){
+                            messageWithPoints = messageWithPoints + '!'
+                        }
+                        return messageWithPoints
+                    }
+                }
+            })
+
+            app.mount('#app')
+        </script>
+    </body>
+</html>
