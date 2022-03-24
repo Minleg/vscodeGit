@@ -1,0 +1,25 @@
+#student-table {
+    max-height: 400px;
+    overflow: scroll;
+}
+
+th, tr {
+    width: 33%;
+}
+
+.present {
+    color: gray;
+    font-style: italic;
+    background-color: aqua;
+}
+
+.absent {
+    color: black;
+    font-weight: bold;
+    background-color: burlywood;
+}
+
+[v-cloak] {
+    display: none;
+}
+

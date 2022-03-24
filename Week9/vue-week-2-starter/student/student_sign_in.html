@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Sign In</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+
+<body>
+    <div id="app" v-cloak> <!-- v-cloak  hides the div until the page loads, hence avoiding the alert error message and alert student arrival or departure at the begining, v-cloak automatically gets removed after the everything is loaded-->
+
+
+        <!--  show errors from form validation -->
+        <div class="alert alert-danger" v-if="errors.length > 0">
+            <ul>
+                <li v-for="error in errors" v-bind:key="error">{{ error }}</li> <!--using v-bind and v-for together makes the page load faster as html is able to recognize exactly which part in the program changed-->
+            </ul>
+        </div>
+
+
+        <div class="card add-student m-2 p-2">
+            <h4 class="card-title">Add new student</h4>
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <!-- v-model newStudentName -->
+                <input id="name" class="form-control" v-model.trim="newStudentName">
+            </div>
+            <div class="form-group">
+                <label for="starID">Star ID</label>
+                <!-- v-model newStarID -->
+                <input id="starID" class="form-control" v-model.trim="newStarID">
+            </div>
+            <!-- v-on:click event handler, we can use @ shortcut for v-on:-->
+            <button class="btn btn-primary" @click="addStudent">Add</button>
+        </div>
+
+        <div class="card student-list m-2 p-2">
+            <h4 class="card-title">Student List</h4>
+            <div id="student-table">
+                <table class="table">
+                    <tr>
+                        <th>Name</th>
+                        <th>StarID</th>
+                        <th>Present?</th>
+                    </tr>
+
+                   <!--  create table rows 
+                   Each row will have a checkbox, bound to the app's data 
+                   When the checkbox is checked/unchecked, the student will be signed in/out 
+                    v-bind is the most common Vue directive, so if we just use : , Vue will assume v-bind.-->
+
+                   <tr v-for="student in students" v-bind:key="student.starID" :class=" { present: student.present, absent: !student.present }"> <!-- v-bind applies present style if student is present and will apply the absent style when the student is not present-->
+                       
+                    <td> {{ student.name }} </td>
+                    <td> {{ student.starID }} </td>
+                    <td> 
+                        <input type="checkbox" v-model="student.present" @change="arrivedOrLeft(student)">
+                    </td>
+                   </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- show a message when student arrives or leaves  -->
+        <div v-if="mostRecentStudent.name">
+
+            <div class="alert alert-success" v-if="mostRecentStudent.present">
+                Welcome, {{ mostRecentStudent.name }}
+            </div>
+
+            <div class="alert alert-info" v-else> 
+                Goodbye, {{ mostRecentStudent.name }}. See you Later!
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+ 
+        let app = Vue.createApp({
+            data(){
+                return {
+                    newStudentName: '',
+                    newStarID: '',
+                    students: [
+                        {name: 'A. Student', starID: 'aa1234bb', present: false},
+                        {name: 'B. Student', starID: 'cc1234dd', present: false},
+                        {name: 'C. Student', starID: 'cc1234aa', present: false}
+                    ],
+                    errors: [],
+                    mostRecentStudent: {}  // for the most recent arrival or departure
+                }
+            },
+            methods: {
+                addStudent() {
+                    
+                    this.errors = []  // clears error array
+
+                    if(!this.newStudentName) {
+                        this.errors.push('Student Name must be entered')
+                    }
+
+                    if (!this.newStarID) {
+                        this.errors.push('StarID must be entered')
+                    }
+                    
+                    //todo add other checks here if needed -  like duplicate starID
+
+                    // if there are no errors
+                    if (this.errors.length == 0){ // makes sure there is a name and starID -validation
+                        let student = { name: this.newStudentName, starID: this.newStarID, present: false}
+                        this.students.push(student)
+                        this.newStudentName = '' // clear the form
+                        this.newStarID = '' // after adding the student
+
+                        this.students.sort(function(student1,student2) {
+                            // return a positive number if student1 should be sorted after student2
+                            if( student1.name.toUpperCase() > student2.name.toUpperCase()) {
+                                return 1
+                            }
+
+                            //return a negative number if student1 should be sorted before student2
+                            if( student1.name.toUpperCase() < student2.name.toUpperCase()) {
+                                return -1
+                            }
+
+                            return 0
+                            // return 0 if order is equivalent
+                            // option -  if names are same, sort by starID
+                        })
+                    }
+
+                    // how to display errors
+
+                },
+                arrivedOrLeft(student) {
+                    this.mostRecentStudent = student
+                }
+            }
+        })
+
+        app.mount('#app')
+
+
+    </script>
+
+</body>
+
+</html>
+
+
+                
