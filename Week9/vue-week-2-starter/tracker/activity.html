@@ -136,7 +136,7 @@
 
                 <!-- Challenge question! Display a list of the total hours for each type.  -->
                 <ul>
-                    <li v-for="type in types" v-bind:key="type"> Time spend on {{type}} : {{ hourSpend }}</li>
+                    <li v-for="type in types"> Time spend for {{type}}: {{ hourSpend[type] }}</li>
                 </ul>
                 
           
@@ -185,18 +185,22 @@
                     this.errors.push('Select a valid date, today or in the past.')
                 }
 
+                // hours should be between 0 and 24
                 if (this.hours <= 0 || this.hours > 24) {
                     this.errors.push('The number of hours must be greater than 0 or less than or equal to 24')
                 }
 
+                // user should have selected a type
                 if (!this.type) {
                     this.errors.push('Select a type')
                 }
-
+                
+                // user should have selected a medium
                 if(!this.medium) {
                     this.errors.push('Select a medium')
                 }
 
+                // if there is no errors
                 if(this.errors.length === 0) {
 
                     let record = {
@@ -219,83 +223,65 @@
                         //retturn a positive value to order record1 after record2
                         return record1.date.getTime() - record2.date.getTime()
                     })
-                    //let sametypeHour = 0
-                    //this.activityRecords.forEach(function (record1,record2){
-                      //  if(record1.type == record2.type){
-                        //    sametypeHour = record1.hours + record2.hours
-                        //}
-                        //return sametypeHour
-                    //})
+                   
                 }
 
                 
             
             },
             shortDate(date) {
-                return new Intl.DateTimeFormat('en-US', {timeZone: 'UTC'}).format(date)
+                return new Intl.DateTimeFormat('en-US', {timeZone: 'UTC'}).format(date) // displays the date in a formatted way
             },
             shortNotes(note) {
                 let shortNote = ''
-                if (note.length > 40){
-                    shortNote = note.substring(0,37)
-                    return shortNote + '...'
+                if (note.length > 40){ // checks if the notes is composed of more than 40 characters 
+                    shortNote = note.substring(0,39) // it takes the first 40 characters to display
+                    return shortNote + '...' // adds ... to show there is more text
                 } else {
                     return note
                 }
             },
-            completedOrNot(completed) {
+            completedOrNot(completed) { // checks if the activity has been completed
                 if(completed){
-                    return 'Completed'
+                    return 'Completed' // returns this if completed
                 }else {
-                    return 'Not Completed'
+                    return 'Not Completed' // otherwise returns not completed
                 }
             }
-            // hourSpend(record) {
-            //     let type = record.type
-            //     let hour = record.hours
-            //     this.activityRecords.forEach(function(activity) {
-            //         if (activity.type == type){
-            //             hour = hour + activity.hours
-                        
-            //             console.log (`Total time spend on ${activity.type}: ${hour}`)
-            //         } else {
-                        
-            //             return `Total time spend on ${type}: ${hour}`
-            //         }
-            //     })
-            // }
+           
         },
         computed: {
             totalRecordsMessage() {
 
-                let numberOfRecords = this.activityRecords.length
+                let numberOfRecords = this.activityRecords.length // checks how many array objects are there in the record
 
                 if( numberOfRecords === 1) {
-                    return '1 record'
+                    return '1 record' // shows record if it's just one element
                 } else {
-                    return `${numberOfRecords} records`
+                    return `${numberOfRecords} records` // other wise shows however many records there are as number records.
                 }
             },
             totalHours() {
                 let total = 0
-                this.activityRecords.forEach(function(record){
-                    total = total + record.hours
+                this.activityRecords.forEach(function(record){  
+                    total = total + record.hours // calculates the total number of hours spend on the three activities
                 })
 
-                return total
+                return total.toFixed(2)
             },
             hourSpend(){
-                let type = this.type
-                let hour = this.hours
-
+                let hoursPerType = { // creates an object for number of hours spend on each type of activities
+                    Sketching: 0,
+                    Drawing: 0,
+                    Painting: 0
+                }
+                let type = ''
                 this.activityRecords.forEach(function(record){
-                    if(record.type == type) {
-                        hour = hour + record.hours
-                        return hour
-                    } else {
-                        return hour
-                    }
+                    type = record.type
+                    hoursPerType[type] = hoursPerType[type] + record.hours // hours are added according to the type it matches with each record and is incremented by the hour spend on that activity
+
                 })
+                return hoursPerType
             }
         }
     })
