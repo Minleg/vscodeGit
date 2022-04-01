@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Minneapolis Weather</title>
+  <style>
+      table,tr,td {
+    border: 1px solid black;
+    margin: 2px;
+}
+
+tr,td{
+    padding: 0px;
+    margin: 0px;
+}
+  </style>
+  
+</head>
+
+<body>
+
+    <h1>Minneapolis Weekly Weather Forecast</h1>
+  
+    <div id="app">
+        <table id="weather-forecast">
+            <tr>
+                <th>Day</th>
+                <th>Temperature</th>
+                <th>Icon</th>
+                <th>Detailed Forecast</th>
+            </tr>
+
+            <!-- Use JavaScript to create table rows for the forecast -->
+            <tr>
+
+            </tr>
+
+        </table>
+    </div>
+
+    <cite>Data from <a href="https://www.weather.gov/documentation/services-web-api">National Weather Service API</a></cite>
+
+    <script>
+        
+        let app = Vue.createApp({
+            data(){
+                return{
+                    name: '',
+                    temperature: '',
+                    temperatureUnit: '',
+                    iconUrl: '',
+                    detailedForcast: ''
+                }
+            },
+            methods: {
+                fetchData(){
+                    fetch("https://api.weather.gov/gridpoints/MPX/116,72/forecast")
+                    .then(response => response.json())
+                    .then(weatherData => {
+                        let properties =  weatherData.properties
+                        let forecastPeriods = properties.periods 
+                        forecastPeriods.forEach( forecast => {
+                            let name = forecast.name
+                            let temperature = forecast.temperature
+                            let temperatureUnit = forecast.temperatureUnit
+                            let iconUrl = forecast.icon
+                            let detailedForcast = forecast.detailedForcast
+
+                        })
+                    })
+                }
+            }
+        })
+
+        app.mount('#app')
+//         const forecastTable = document.querySelector('#weather-forecast')
+
+// fetch("https://api.weather.gov/gridpoints/MPX/116,72/forecast")
+// .then( response => response.json())
+// .then (weatherData => {
+//     console.log(weatherData)
+//     showForecastInTable(weatherData)
+// })
+
+// function showForecastInTable(weatherData){
+
+
+//     //console.log(weatherData)
+//     let properties = weatherData.properties
+//     //console.log(properties)
+
+//     let forecastPeriods = properties.periods 
+//     //console.log(forecastPeriods
+
+//     forecastPeriods.forEach ( forecast => {
+
+//         let tableRow = document.createElement('tr')
+
+//         let tableDataCellDay = document.createElement('td')
+//         let tabelDataCellTemp = document.createElement('td')
+//         let tableDataCellIcon = document.createElement('td')
+//         let weatherIconImg = document.createElement('img')
+//         let tableDataCellForecast = document.createElement('td')
+//         let dataForecast = document.createElement('p')
+
+//         //console.log(forecast)
+//         // let name = forecast['name'] - same 
+//         let name = forecast.name
+//         let temperature = forecast.temperature
+//         let temperatureUnit = forecast.temperatureUnit
+//         let iconUrl = forecast.icon 
+//         let detailedForcast = forecast.detailedForecast
+
+//         tableDataCellDay.innerHTML = name
+//         tabelDataCellTemp.innerHTML = `${temperature}\u00B0${temperatureUnit}`
+//         tableRow.appendChild(tableDataCellDay)
+//         tableRow.appendChild(tabelDataCellTemp)
+
+//         //icon
+//         weatherIconImg.src = iconUrl
+//         tableDataCellIcon.appendChild(weatherIconImg)
+//         tableRow.appendChild(tableDataCellIcon)
+
+//         //Detailed forecast
+//         dataForecast.innerHTML = detailedForcast
+//         tableDataCellForecast.appendChild(dataForecast)
+//         tableRow.appendChild(tableDataCellForecast)
+//         forecastTable.appendChild(tableRow)
+//     })
+// }
+
+    </script>
+
+</body>
+</html>

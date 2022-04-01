@@ -1,10 +1,10 @@
 <template>
   <div id="app">
 
-    <new-student-form v-on:student-added="newStudentAdded"></new-student-form>
+    <new-student-form v-on:student-added="newStudentAdded"></new-student-form><!--when student-added event happens in the NewStudentForm, newStudentAdded method is called-->
     <student-table v-bind:students="students" 
       v-on:student-arrived-or-left="studentArrivedOrLeft"
-      v-on:delete-student="studentDeleted"></student-table>
+      v-on:delete-student="studentDeleted"></student-table> <!--v-bind:students makes students array in app bind with students array in studentTable-->
     <student-message v-bind:student="mostRecentStudent"></student-message>
   </div>
  
@@ -24,8 +24,8 @@ export default {
   },
   data() {
     return {
-      students: [],
-      mostRecentStudent: {}
+      students: [], // to store each student object
+      mostRecentStudent: {} // to store the most recent student
     }
   },
   methods: {
